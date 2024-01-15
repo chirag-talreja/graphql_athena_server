@@ -1,0 +1,42 @@
+scalar Datetime
+
+schema {
+    query: Query
+}
+
+type backup {
+    id: String!
+    name: String
+    source_id: String
+    backup_type: String
+    app_type: String
+    backup_mode: String
+    backup_granularity: String
+    point_in_time: String
+    expires_at: String
+    protection_store_id: String
+    protection_store_type: String
+    dataorchestrator_id: String
+    target_system_id: String
+    target_system_name: String
+    target_system_type: String
+    time_stamp: Datetime
+    size_in_bytes: Int
+}
+
+type BackupResult {
+    success: Boolean!
+    errors: [String]
+    backup: backup
+}
+
+type BackupsResult {
+    success: Boolean!
+    errors: [String]
+    backups: [backup]
+}
+
+type Query {
+    listBackups: BackupsResult
+    getBackup(id: String!): BackupResult!
+}
